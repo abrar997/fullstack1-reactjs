@@ -1,23 +1,29 @@
-import logo from './logo.svg';
-import './App.css';
-
+import React from "react";
+import "./App.css";
+import { Route, Routes } from "react-router-dom";
+import Login from "./components/Login/Login";
+import Register from "./components/Register/Register";
+import AddProducts from "./components/Products/AddProducts";
+import UpdateProducts from "./components/Products/UpdateProducts";
+import Products from "./components/Products/Products";
+import Home from "./components/Home/Home";
+// import ProtectedRoutes from "./components/ProtectedRoutes/ProtectedRoutes";
 function App() {
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <>
+        {/* <h3 className="mt-3 ">ecommerece dashboard </h3> */}
+        <Routes>
+          <Route path="/" element={<Home />} />
+          {/* <Route path="/" element={<Register />} /> */}
+          <Route element={<Products />} path="/prod" />
+          <Route path="/add" element={<AddProducts />} />
+          <Route path="/update" element={<UpdateProducts />} />
+          <Route path="login" element={<Login />} />
+          <Route path="register" element={<Register />} />
+          {/* <Route path="*" element={<NotFound />} /> */}
+        </Routes>
+      </>
     </div>
   );
 }

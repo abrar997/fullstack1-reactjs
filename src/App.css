@@ -1,17 +1,21 @@
-.App {
-  text-align: center;
+.navbar {
+  background-color: rgb(143, 11, 62);
 }
-
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+.navbar-wrapper a:hover {
+  color: rgb(243, 242, 242);
+  border-bottom: 1px solid #eee;
+  transition :all 3s ease;
 }
-
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
+.navbar-wrapper a {
+  padding-left: 8px;
+  color: white;
+  padding-bottom: 4px;
+  text-decoration: none;
 }
+.dropdown-toggle {
+  color: white !important;
+}
+/* nav-link */
 
 .App-header {
   background-color: #282c34;
@@ -28,11 +32,8 @@
   color: #61dafb;
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
-}
+
+/* .products_list img{
+  width: 100px;
+  height: 60px;
+} */

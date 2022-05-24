@@ -1,0 +1,6 @@
+
+1_trans data in Route by Prototected
+2_Hash password not work u must check it and rewrite login
+3-table or view not found ==>solved by add $table='name of table' in model
+
+

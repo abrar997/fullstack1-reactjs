@@ -1,0 +1,69 @@
+for full stack project
+A)laravel
+1-create controller 
+2-create-model php artisan make:model -m (will create  table and model by one command)
+3-create table  
+4-connect controller by route in api.php  ==>Route::post/resource('nameinpostmanuseit',controller::class) # more better use resource 
+5-check your api by postman to send request write in your controller bellow code::
+
+        $data=$request->validate([
+            'name' => 'required',
+            'email' => 'required',
+            'password' => 'required',
+        ]);
+        $user = Products::create($data);
+        return response($user, 200); //200 status in postman 
+
+
+b)react js
+
+//register//::
+-----------
+1)create form with inputs
+2)inputs contain ==>value ,onChange={}
+# useState for input values 
+# fetch data by bello code ::
+let result = await fetch("http://localhost:8000/api/form"  # after check it from postman 
+, {
+      method: "POST",
+      body: JSON.stringify(item),
+      headers: {
+        "Content-Type": "application/json",
+        Accept: "application/json",
+      },
+    });
+    result = await result.json();
+    localStorage.setItem("user-info", JSON.stringify(result)); //data save in storage if u back to inspect with key ===>user-info
+    navigate("/add");
+   
+3)button onClick={} 
+4)use useNavigate with function u can't use arrow function with it ' ==>for redirect 
+5)u can instead onsubmit with onClick in button type submit 
+6)useNavigate write in onClick 
+
+
+//sign in //
+-----------
+when u test code on postman instead text in body to json  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+localhost for laravel 8000
+localhost for react 3000
