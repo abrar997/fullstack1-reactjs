@@ -4,7 +4,7 @@ import { Link, useNavigate } from "react-router-dom";
 const Header = () => {
   let navigate = useNavigate();
   let user = JSON.parse(localStorage.getItem("user-info"));
-  console.log(user);
+  // console.log(user);
 
   function logout() {
     localStorage.clear();
@@ -13,17 +13,17 @@ const Header = () => {
 
   return (
     <div>
-      <Navbar className="navbar">
+      <Navbar className="navbar bg-danger">
         <Container>
-          <Navbar.Brand href="#home" className=" text-light">
+          <Navbar.Brand href="" className=" text-light text-decoration-none ">
             Code/Mu.{" "}
           </Navbar.Brand>
           <Nav className=" me-auto navbar-wrapper p-2">
             {localStorage.getItem("user-info") ? (
               <div>
-                <Link to="/prod"> products</Link>
+                <Link to="/Products"> products</Link>
                 <Link to="/add">Add products</Link>
-                <Link to="/update">Update products</Link>
+                {/* <Link to="/update">Update products</Link> */}
               </div>
             ) : (
               <>
@@ -38,7 +38,7 @@ const Header = () => {
               <NavDropdown
                 className="text-light"
                 // title='User Name'
-                title={user && user.name }
+                title={user && user.name}
               >
                 <NavDropdown.Item onClick={logout}>Logout</NavDropdown.Item>
               </NavDropdown>

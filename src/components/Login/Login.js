@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, {useState } from "react";
 import Header from "../Header/Header";
 import { useNavigate } from "react-router-dom";
 import { Container, Form } from "react-bootstrap";
@@ -57,9 +57,7 @@ function Login() {
               // value={password}
             />
           </Form.Group>
-
           <button onClick={loginHandle} className="btn btn-primary mt-4">
-            {" "}
             log in
           </button>
         </Form>

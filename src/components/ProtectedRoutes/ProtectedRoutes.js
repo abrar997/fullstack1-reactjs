@@ -5,7 +5,7 @@ import { useNavigate } from "react-router-dom";
 
 
 function ProtectedRoutes(props) {
-    let Cmp = props.Cmp
+    let Cmp = props.mcn
   let navigate = useNavigate();
   useEffect(() => {
     if (!localStorage.getItem("user-info")) {

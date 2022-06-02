@@ -1,23 +1,34 @@
-import axios from "axios";
 import React, { useEffect, useState } from "react";
 // import axios from "axios";
-import { Container, Table } from "react-bootstrap";
+import { Button, Container, Table } from "react-bootstrap";
 import Header from "../Header/Header";
+import { Link, Outlet } from "react-router-dom";
 
 function Products() {
   const [data, setdata] = useState([]);
+
+  async function fetchData() {
+    let result = await fetch("http://localhost:8000/api/list");
+    // result = await result.json();
+    setdata(await result.json());
+    // let  result=await axios.get('http://localhost:8000/api/list').then(res=>{
+    //     result =  res.result.json();
+    //   setdata(result)
+    //   console.log("data",data);
+    // })
+  }
+
+  async function deleteProduct(id) {
+    let deleteItems = await fetch("http://localhost:8000/api/delete/" + id, {
+      method: "DELETE",
+    });
+
+    deleteItems = await deleteItems.json();
+    console.log(deleteItems);
+    fetchData();
+  }
+
   useEffect(() => {
-    async function fetchData() {
-      let result = await fetch("http://localhost:8000/api/list");
-      // result = await result.json();
-      setdata(await result.json());
-      console.log("data", data);
-      // let  result=await axios.get('http://localhost:8000/api/list').then(res=>{
-      //     result =  res.result.json();
-      //   setdata(result)
-      //   console.log("data",data);
-      // })
-    }
     fetchData();
   }, []);
 
@@ -29,41 +40,56 @@ function Products() {
           products page
         </h3>
         <div className="offset-sm-2 col-sm-10 m-auto">
+          <Table striped bordered className=" m-auto shadow text-center">
+            <thead>
+              <tr>
+                <th>#</th>
+                <th>name</th>
+                <th>price</th>
+                <th>description</th>
+                <th>image</th>
+                <th>Operation</th>
+                <th>details</th>
+              </tr>
+            </thead>
 
-        <Table striped bordered hover className=" m-auto text-center">
-          <thead>
-            <tr>
-              <th>#</th>
-              <th>name</th>
-              <th>price</th>
-              <th>description</th>
-              <th>image</th>
-            </tr>
-          </thead>
+            <tbody>
+              {data.map((items) => {
+                return (
+                  <tr key={items.id}>
+                    <td> {items.id} </td>
+                    <td> {items.name}</td>
+                    <td> {items.price}</td>
+                    <td> {items.description}</td>
 
-          <tbody>
-            {data.map((items) => {
-              return (
-                <tr key={items.id}>
-                  <td> {items.id} </td>
-                  <td> {items.name}</td>
-                  <td> {items.price}</td>
-                  <td> {items.description}</td>
-                  <td>
-                    {" "}
-                    <img
-                      src={"http://localhost:8000/" + items.path}
-                      alt={items.name}
-                      style={{ width: 180 }}
-                      />{" "}
-                  </td>
-                </tr>
-              );
-            })}
-          </tbody>
-        </Table>
-            </div>
+                    <td>
+                      <img
+                        src={"http://localhost:8000/" + items.path}
+                        alt={items.name}
+                        style={{ width: 180, height: 130 }}
+                      />
+                    </td>
+                    <td>
+                      <Button
+                        className="btn-danger"
+                        onClick={() => deleteProduct(items.id)}
+                      >
+                        delete
+                      </Button>
+                    </td>
+                    <td>
+                      <Link to={"/SingleProduct/" + items.id}>
+                        <Button className="btn-success">details</Button>
+                      </Link>
+                    </td>
+                  </tr>
+                );
+              })}
+            </tbody>
+          </Table>
+        </div>
       </Container>
+      <Outlet />
     </div>
   );
 }

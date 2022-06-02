@@ -1,23 +1,21 @@
 import React, { useState } from "react";
 import { Container, Form } from "react-bootstrap";
+import { useNavigate } from "react-router-dom";
 import Header from "../Header/Header";
 function AddProducts() {
   const [name, setName] = useState("");
   const [price, setPrice] = useState("");
   const [description, setDescription] = useState("");
   const [file, setFile] = useState("");
-
+  let navigate = useNavigate();
   async function AddProduct(e) {
     e.preventDefault();
-
     console.log({ name, price, description, file });
-
     const formData = new FormData();
     formData.append("name", name);
     formData.append("price", price);
     formData.append("description", description);
     formData.append("path", file);
-
     await fetch("http://localhost:8000/api/shop", {
       method: "POST",
       body: formData,
@@ -26,6 +24,7 @@ function AddProducts() {
       // },
     });
     alert("Data has been saved ");
+    navigate("/Products");
   }
 
   return (
@@ -43,7 +42,6 @@ function AddProducts() {
                 onChange={(e) => setName(e.target.value)}
                 // value={email}
               />
-
             </Form.Group>
             <Form.Group controlId="formBasicPassword">
               <Form.Label> price</Form.Label>
